@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+        <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+        <link rel="stylesheet" href="./css/stylesheet.css">
+        <title>Space Game</title>
+        </head>
+    <body>
+
+      <!-- FIRST PAGE -->
+        <section id="starter-page" class="page">
+            <button id="show-threejs-btn" type="button" class="center-element">View Threejs sample</button>
+        </section>
+
+        <!-- GAME PAGE -->
+        <section id="space-game-page" class="page hide-div">
+            <img id="exit-game-btn" src="./assets/xBtn.png" alt="">
+            <canvas id="game-canvas" width="800" height="600" class="center-element"></canvas>
+        </section>
+
+    </body>
+
+    <script type="module" src="./js/sessionHandler.js"></script>
+
+</html>
