@@ -54,13 +54,14 @@ class GameHandler {
         const far = 1000.0
 
 		this.camera = new PerspectiveCamera(fov, aspect, near, far);
-		this.camera.position.set(0, 50, 100);
-        const s = new Vector3(0,0,0)
+		this.camera.position.set(0, 0, -50);
+
+        const s = new Vector3(0, 0, 10);
         this.camera.lookAt(s)
 
 		this.camera.updateProjectionMatrix();
 
-        const gridHelper = new GridHelper( 100, 10 );
+        const gridHelper = new GridHelper( 500, 100 );
         this.scene.add( gridHelper );
 
         console.log(gridHelper);
@@ -84,7 +85,6 @@ class GameHandler {
 		this.renderer = new WebGLRenderer({ canvas: this.canvas, antialias: true, alpha: true });
 		this.renderer.setSize(this.canvas.width, this.canvas.height);
 
-        // const controls = new OrbitControls(this.camera, this.renderer.domElement)
     }
 
     createBox() {

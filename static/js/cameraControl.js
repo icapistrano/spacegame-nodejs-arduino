@@ -1,51 +1,39 @@
-const { Vector3 } = require('three');
+const { Vector3, Object3D } = require('three');
 
 
 class ThirdPersonCamera {
     constructor(params) {
         this.params = params;
         this.camera = params.camera;
-
-        this.currentPosition = new Vector3();
-        this.currentLookAt = new Vector3();
-
-        console.log(this.params.target.quaternion.x);
+        this.cameraLookat = new Vector3()
     }
 
     calculateIdealOffset() {
-        const idealOffset = new Vector3(0, 50, -500);
+        const idealOffset = new Vector3(0, 20, -50);
         idealOffset.applyQuaternion(this.params.target.quaternion);
         idealOffset.add(this.params.target.position);
         return idealOffset
     }
 
     calculateIdealLookAt() {
-        const idealLookAt = new Vector3(0, 10, 1000);
+        const idealLookAt = new Vector3(0, 0, 50);
         idealLookAt.applyQuaternion(this.params.target.quaternion);
         idealLookAt.add(this.params.target.position);
         return idealLookAt;
     }
 
-
     update(timeElapsed) {
         const idealOffset = this.calculateIdealOffset();
-        // const idealLookAt = this.calculateIdealLookAt();
+        const idealLookat = this.calculateIdealLookAt();
 
-        const t = 0.000000001 * timeElapsed;
+        const t = 0.01 * timeElapsed;
 
-        // const idealOffset = new Vector3(this.params.target.position.x, this.params.target.position.y, this.params.target.position.z - 1000);
+        this.camera.position.lerp(idealOffset, t);
+        this.cameraLookat.lerp(idealLookat, t)
 
-        // this.camera.position.lerp(idealOffset, t)
-
-        // console.log(this.params.target.position, this.camera.position);
-
-        this.currentPosition.lerp(idealOffset, t);
-        // this.currentLookAt.lerp(idealLookAt, t);
-        //
-        // //
-        // this.camera.position.copy(this.currentPosition);
-        // this.camera.lookAt(this.currentLookAt);
+        this.camera.lookAt(this.cameraLookat);
     }
 }
+
 
 export { ThirdPersonCamera }

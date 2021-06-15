@@ -12,7 +12,7 @@ class Controls {
         };
 
         this._velocity = new Vector3(0, 0, 0);
-        this.acceleration = 0.075;
+        this.acceleration = 0.1;
 
         document.addEventListener('keydown', (e) => { this.onKeyDown(e) });
         document.addEventListener('keyup', (e) => { this.onKeyUp(e)});
@@ -59,11 +59,11 @@ class Controls {
     update(timeInSeconds) {
 
         if (this.move.forward) {
-            this.params.ship.translateZ(-this.acceleration * timeInSeconds);
+            this.params.ship.translateZ(this.acceleration * timeInSeconds);
         }
 
         if (this.move.backward) {
-            this.params.ship.translateZ(this.acceleration * timeInSeconds);
+            this.params.ship.translateZ(-this.acceleration * timeInSeconds);
         }
 
         if (this.move.left) {
