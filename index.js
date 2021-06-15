@@ -3,6 +3,10 @@ require('electron-reload')(__dirname);
 
 const { app, BrowserWindow } = require('electron')
 
+const path = require('path');
+// global.window = path.resolve(__dirname);
+
+
 function createWindow () {
   const win = new BrowserWindow({
     fullscreen:true,
@@ -13,8 +17,8 @@ function createWindow () {
     }
   })
 
-  win.setMenu(null);
-  // win.webContents.openDevTools();
+  // win.setMenu(null);
+  win.webContents.openDevTools();
 
   win.loadFile('static/main.html');
 }
